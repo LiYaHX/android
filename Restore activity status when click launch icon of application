@@ -1,0 +1,22 @@
+需求：进入App的Setting界面，点击登出按钮，输入帐号登入，再次进入 Setting 界面，点击 Home 按钮，点击 Launch Icon，进入到主界面，
+      而不是Setting界面。
+
+BUG ：点击 Launch Icon，进入App主界面，而不是Setting界面。
+      
+      
+出现该Bug的错误代码：
+      
+      startActivity(new Intent(this, LoginActivity.class)
+                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                        
+修复Bug代码:
+
+      Intent intent = new Intent(Intent.ACTION_MAIN);
+			intent.addCategory(Intent.CATEGORY_LAUNCHER);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent.setClass(getBaseContext(), LoginActivity.class);
+			startActivity(intent);
+			
+			
+			
+BUG修复原理流程图：待续
